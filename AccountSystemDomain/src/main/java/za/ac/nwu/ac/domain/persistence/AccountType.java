@@ -7,10 +7,10 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "DEMO_ACCOUNT_TYPE",schema = "VITRSA_SANDBOX")
+@Table(name = "DEMO_ACCOUNT_TYPE",schema = "HR")
 public class AccountType implements Serializable {
     private static final long serialVersionUID = 3833725316797154577L;
-    private Long accountTypeId;
+    private Long accountTypeId ;
     private String mnemonic;
     private String accountTypeName;
     private LocalDate creationDate;
@@ -26,12 +26,15 @@ public class AccountType implements Serializable {
 
     }
 
+    public AccountType(String mnemonic, String accountTypeName, LocalDate creationDate) {
+        this.mnemonic =mnemonic;
+        this.accountTypeName = accountTypeName;
+        this.creationDate = creationDate;
+    }
+
     @Id
-    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ",sequenceName = "VITRSA_SANDBOX.VIT_RSA_GENERIC_SEQ",allocationSize = 1)
+    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ",sequenceName = "HR.VIT_RSA_GENERIC_SEQ",allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VIT_RSA_GENERIC_SEQ")
-
-
-
     @Column(name = "ACCOUNT_TYPE_ID")
     public Long getAccountTypeId() {
         return accountTypeId;
@@ -49,7 +52,7 @@ public class AccountType implements Serializable {
         return creationDate;
     }
 
-    @OneToMany(targetEntity = AccountTransaction.class, fetch = FetchType.LAZY,mappedBy = "accountType",orphanRemoval = true,cascade = CascadeType.PERSIST)
+    @OneToMany(targetEntity = AccountTransaction.class, fetch = FetchType.LAZY,mappedBy = "accountType")
     public Set<AccountTransaction> getAccountTransactions() {
         return accountTransactions;
     }

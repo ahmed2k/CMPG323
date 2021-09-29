@@ -6,44 +6,43 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
-
+import java.util.Set;
 
 @Entity
-@Table(name = "DEMO_ACCOUNT_TYPE",schema = "VITRSA_SANDBOX")
+@Table(name = "DEMO_ACCOUNT_TYPE",schema = "HR")
 public class AccountTransaction implements Serializable {
 
     private static final long serialVersionUID = 5909795172467694318L;
 
-    private Long transactionId;
+    private Long transactionId = 0l;
     private AccountType accountType;
     private Long memberId;
     private Long amount;
     private LocalDate transactionDate;
+    private AccountTransactionDetails details;
 
     public AccountTransaction(){
 
+    } public AccountTransaction(Long transactionId,Long memberId,Long amount,LocalDate transactionDate) {
+        this.transactionId = transactionId;
+        this.memberId = memberId;
+        this.amount = amount;
+        this.transactionDate = transactionDate;
     }
     public AccountTransaction(Long transactionId,AccountType accountType,Long memberId,Long amount,LocalDate transactionDate) {
-       this.transactionId = transactionId;
+        this.transactionId = transactionId;
         this.accountType = accountType;
-       this.memberId = memberId;
-       this.amount = amount;
-       this.transactionDate = transactionDate;
-
+        this.memberId = memberId;
+        this.amount = amount;
+        this.transactionDate = transactionDate;
     }
+
 
     @Id
-    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ",sequenceName = "VITRSA_SANDBOX.VIT_RSA_GENERIC_SEQ",allocationSize = 1)
+    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ",sequenceName = "HR.VIT_RSA_GENERIC_SEQ",allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VIT_RSA_GENERIC_SEQ")
-    @Column(name = "TX_ID")
-    public long getTransactionId(){
-        return transactionId;
-    }
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ACCOUNT_TYPE_ID")
-    public AccountType getAccountType(){
-        return accountType;
-    }
+    @Column(name = "ACCOUNT_TX_ID")
+    public long getTransactionId(){ return transactionId;}
 
     @Column(name = "MEMBER_ID")
     public long getMemberId(){
@@ -61,7 +60,16 @@ public class AccountTransaction implements Serializable {
         return transactionDate;
     }
 
-    public void setTransactionId(Long transactionId){
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ACCOUNT_TYPE_ID")
+    public AccountType getAccountType(){
+        return accountType;
+    }
+
+    @OneToMany(targetEntity = AccountTransactionDetails.class,fetch = FetchType.LAZY,mappedBy = "accountTransaction")
+
+
+    public void setTransactionId(Long transactionId) {
         this.transactionId = transactionId;
     }
 
@@ -71,6 +79,19 @@ public class AccountTransaction implements Serializable {
 
     public void setAmount(Long amount){
         this.amount = amount;
+    }
+
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
+    }
+
+    public void setTransactionDate(LocalDate transactionDate) {
+        this.transactionDate = transactionDate;
+    }
+    public void setDetails(AccountTransactionDetails details){this.details = details;}
+
+    public AccountTransactionDetails getDetails() {
+        return details;
     }
 
     @Override

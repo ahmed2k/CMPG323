@@ -11,6 +11,10 @@ public class AccountTransactionDetails implements Serializable {
     String partnerName;
     Long numberOfItems;
 
+    public AccountTransactionDetails() {
+
+    }
+
     @Id
     @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ",sequenceName = "HR.VIT_RSA_GENERIC_SEQ",allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "VIT_RSA_GENERIC_SEQ")

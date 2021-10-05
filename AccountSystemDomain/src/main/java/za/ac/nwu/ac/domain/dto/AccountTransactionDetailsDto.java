@@ -1,8 +1,6 @@
 package za.ac.nwu.ac.domain.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import za.ac.nwu.ac.domain.persistence.AccountTransaction;
-import za.ac.nwu.ac.domain.persistence.AccountTransactionDetails;
+
 
 public class AccountTransactionDetailsDto {
     String partnerName;
@@ -18,7 +16,7 @@ public class AccountTransactionDetailsDto {
     }
 
 
-    @JsonIgnore
+  /*  @JsonIgnore
     public AccountTransactionDetails buildAccountTransactionDetails(AccountTransaction accountTransaction){
         return  new AccountTransactionDetails(accountTransaction,this.partnerName,this.numberOfItems);
     }
@@ -26,7 +24,7 @@ public class AccountTransactionDetailsDto {
     @JsonIgnore
     public AccountTransactionDetails buildAccountTransactionDetails(){
         return new AccountTransactionDetails(this.partnerName,this.numberOfItems);
-    }
+    }*/
 
     public String getPartnerName() {
         return partnerName;

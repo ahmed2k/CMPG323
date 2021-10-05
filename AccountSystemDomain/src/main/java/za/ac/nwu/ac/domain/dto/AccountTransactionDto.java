@@ -29,14 +29,14 @@ public class AccountTransactionDto implements Serializable {
         this.transactionDate = transactionDate;
     }
 
-    public AccountTransactionDto(Long transactionId, String accountTypeMnemonic, Long memberId, Long amount, LocalDate transactionDate, AccountTransactionDetailsDto details) {
+    /*public AccountTransactionDto(Long transactionId, String accountTypeMnemonic, Long memberId, Long amount, LocalDate transactionDate, AccountTransactionDetailsDto details) {
         this.transactionId = transactionId;
         this.accountTypeMnemonic = accountTypeMnemonic;
         this.memberId = memberId;
         this.amount = amount;
         this.transactionDate = transactionDate;
         this.details = details;
-    }
+    }*/
 
     /*public AccountTransactionDto(AccountTransaction accountTransaction){
         this.transactionId = accountTransaction.getTransactionId();

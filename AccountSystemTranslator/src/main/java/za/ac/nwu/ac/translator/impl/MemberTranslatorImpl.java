@@ -37,7 +37,7 @@ public class MemberTranslatorImpl implements MemberTranslator {
     @Override
     public MemberDto getMilesByMemberName(String firstName) {
         try{
-           return memberRepository.getMilesByMemberName(firstName);
+           return  memberRepository.getMilesByMemberName(firstName);
 
         }catch(Exception e){
             throw new RuntimeException("Unable to read from DB",e);
@@ -55,9 +55,17 @@ public class MemberTranslatorImpl implements MemberTranslator {
     }
 
     @Override
-    public  MemberDto addMiles(long number,String firstName){
+    public  int addMiles(long number,String firstName){
         try {
             return memberRepository.addMiles(number,firstName);
+        }catch (Exception e){
+            throw new RuntimeException("Unable to update",e);
+        }
+    }
+    @Override
+    public  int subtractMiles(long number,String firstName){
+        try {
+            return memberRepository.subtractMiles(number,firstName);
         }catch (Exception e){
             throw new RuntimeException("Unable to update",e);
         }

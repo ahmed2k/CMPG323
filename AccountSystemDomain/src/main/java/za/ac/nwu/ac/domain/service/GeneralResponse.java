@@ -32,6 +32,12 @@ public class GeneralResponse<T> implements Serializable {
 
     @Override
     public String toString(){
+        if(payload.equals(new Integer(1))){
+            return "General Response{"+
+                    "successful= "+successful+
+                    ", Su= "+payload+
+                    "} ";
+        }
         return "General Response{"+
                 "successful= "+successful+
                 ", payload= "+payload+

@@ -21,8 +21,11 @@ public class MemberDto implements Serializable{
     private Long miles;
     private LocalDate creationDate;
 
-    public  MemberDto(){
-
+   public  MemberDto(){
+        this.firstName = "JJ";
+        this.lastName = "Hussein";
+        this.miles = 1299L;
+        this.creationDate = LocalDate.now();
     }
 
     public MemberDto(String firstName, String lastName, Long miles, LocalDate creationDate) {
@@ -38,6 +41,7 @@ public class MemberDto implements Serializable{
         this.setMiles(member.getMiles());
         this.setCreationDate(member.getCreationDate());
     }
+
 
    @ApiModelProperty(position = 1,
            value = "Member first name",

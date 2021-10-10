@@ -13,4 +13,5 @@ public interface MemberTranslator {
     MemberDto getMilesByMemberName(String firstName);
     int addMiles(long number,String firstName);
     int subtractMiles(long number,String firstName);
+    void someMethod();
 }

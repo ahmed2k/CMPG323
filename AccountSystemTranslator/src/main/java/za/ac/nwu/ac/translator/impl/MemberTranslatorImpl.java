@@ -53,6 +53,10 @@ public class MemberTranslatorImpl implements MemberTranslator {
             throw new RuntimeException("Unable to save data the DB",e);
         }
     }
+    @Override
+    public void someMethod() {
+
+    }
 
     @Override
     public  int addMiles(long number,String firstName){

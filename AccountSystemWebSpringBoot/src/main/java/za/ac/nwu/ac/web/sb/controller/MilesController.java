@@ -70,10 +70,10 @@ public class MilesController {
     public ResponseEntity<GeneralResponse<Integer>> addMiles(
             @ApiParam(value = "The amount to add to miles balance.",
                     name = "miles",
-                    example = "100",
-                    required = true)
+                    example = "100")
+                   // required = true)
             @RequestParam("miles") final long miles,
-            @ApiParam(value = "The name of member to subtract miles.",
+            @ApiParam(value = "The name of member to add miles.",
                     example = "Ahmed",
                     name = "firstName2",
                     required = true)
@@ -112,7 +112,7 @@ public class MilesController {
     }
 
     @GetMapping("{fname}")
-    @ApiOperation(value = "Fetches the specified AccountType.",notes = "Fetches the AccountType corresponding to the given mnemonic.")
+    @ApiOperation(value = "Fetches the specified member.",notes = "Fetches the member corresponding to the given first name.")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Goal found"),
             @ApiResponse(code = 400, message = "Bad request", response = GeneralResponse.class),
@@ -121,8 +121,8 @@ public class MilesController {
 
     })
     public ResponseEntity<GeneralResponse<MemberDto>> getMiles(
-            @ApiParam(value = "The name that uniquely identifies the AccountType.",
-                    example = "MILES",
+            @ApiParam(value = "The name that uniquely identifies the member.",
+                    example = "Ahmed",
                     name = "fname",
                     required = true)
             @PathVariable("fname") final String fname){
